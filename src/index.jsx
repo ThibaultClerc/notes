@@ -1,23 +1,38 @@
 import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import 'bootstrap/dist/css/bootstrap.css';
+import 'index.scss';
 import MarkdownInput from "components/MarkdownInput";
 import NoteDisplay from "components/NoteDisplay";
 
 const App = () => {
-  const [input, setInput] = useState({});
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
-  const changeParentInput = (value) => {
-    setInput({
-      ...value
-    })
+  const changeParentTitle = (value) => {
+    setTitle(
+      value
+    )
+    console.log(typeof value)
+  }
+
+  const changeParentContent = (value) => {
+    setContent(
+      value
+    )
   }
 
   return (
-    <>
-    <NoteDisplay title={input.title} content={input.content}/>
-    <MarkdownInput data={(value) => changeParentInput(value)}/>
-    </>
+    <div className="container">
+      <div className="row">
+        <div className="col-md-3">
+        </div>
+        <div className="col-md-9">
+          <NoteDisplay title={title} content={content}/>
+          <MarkdownInput title={(value) => changeParentTitle(value)} content ={(value) => changeParentContent(value)}/>
+        </div>
+      </div>
+    </div>
   )
 }
 
