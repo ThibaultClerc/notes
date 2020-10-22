@@ -1,13 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import ReactDOM from "react-dom";
 import MarkdownInput from "components/MarkdownInput";
 import NoteDisplay from "components/NoteDisplay";
 
 const App = () => {
+  const [input, setInput] = useState({});
+
+  const changeParentInput = (value) => {
+    setInput({
+      ...value
+    })
+  }
+
   return (
     <>
-    <MarkdownInput/>
-    <NoteDisplay/>
+    <NoteDisplay title={input.title} content={input.content}/>
+    <MarkdownInput data={(value) => changeParentInput(value)}/>
     </>
   )
 }
